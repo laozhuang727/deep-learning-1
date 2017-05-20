@@ -18,7 +18,7 @@ def preprocess_and_save_data(dataset_path, token_lookup, create_lookup_tables):
     Preprocess Text Data
     """
     text = load_data(dataset_path)
-    
+
     # Ignore notice, since we don't use it for analysing the data
     text = text[81:]
 
@@ -33,7 +33,6 @@ def preprocess_and_save_data(dataset_path, token_lookup, create_lookup_tables):
     int_text = [vocab_to_int[word] for word in text]
     pickle.dump((int_text, vocab_to_int, int_to_vocab, token_dict), open('preprocess.p', 'wb'))
 
-<<<<<<< HEAD
     save_metadata(int_to_vocab, "metadata.tsv")
 
 
@@ -42,9 +41,6 @@ def save_metadata(int_to_vocab, file):
         f.write('id\tword\n')
         for (k, v) in int_to_vocab.items():
             f.write('{}\t{}\n'.format(k, v))
-
-=======
->>>>>>> d1541a8cab9e378b265cbb0de0c244150dbdedde
 
 def load_preprocess():
     """

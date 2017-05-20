@@ -86,8 +86,6 @@ def test_get_batches(get_batches):
         assert batches.shape == (7, 2, 128, 5),\
             'Batches returned wrong shape.  Found {}'.format(batches.shape)
 
-<<<<<<< HEAD
-=======
         for x in range(batches.shape[2]):
             assert np.array_equal(batches[0,0,x], np.array(range(x * 35, x * 35 + batches.shape[3]))),\
                 'Batches returned wrong contents. For example, input sequence {} in the first batch was {}'.format(x, batches[0,0,x])
@@ -102,7 +100,6 @@ def test_get_batches(get_batches):
         assert np.array_equal(batches[-1,1,-1], last_seq),\
             'The last target of the last batch should be the first input of the first batch. Found {} but expected {}'.format(batches[-1,1,-1], last_seq)
 
->>>>>>> d1541a8cab9e378b265cbb0de0c244150dbdedde
     _print_success_message()
 
 
@@ -225,11 +222,8 @@ def test_build_rnn(build_rnn):
     with tf.Graph().as_default():
         test_rnn_size = 256
         test_rnn_layer_size = 2
-<<<<<<< HEAD
-        test_cell = rnn.MultiRNNCell([rnn.BasicLSTMCell(test_rnn_size)] * test_rnn_layer_size)
-=======
+
         test_cell = rnn.MultiRNNCell([rnn.BasicLSTMCell(test_rnn_size) for _ in range(test_rnn_layer_size)])
->>>>>>> d1541a8cab9e378b265cbb0de0c244150dbdedde
 
         test_inputs = tf.placeholder(tf.float32, [None, None, test_rnn_size])
         outputs, final_state = build_rnn(test_cell, test_inputs)
@@ -257,11 +251,7 @@ def test_build_nn(build_nn):
         test_embed_dim = 300
         test_rnn_layer_size = 2
         test_vocab_size = 27
-<<<<<<< HEAD
         test_cell = rnn.MultiRNNCell([rnn.BasicLSTMCell(test_rnn_size)] * test_rnn_layer_size)
-=======
-        test_cell = rnn.MultiRNNCell([rnn.BasicLSTMCell(test_rnn_size) for _ in range(test_rnn_layer_size)])
->>>>>>> d1541a8cab9e378b265cbb0de0c244150dbdedde
 
         logits, final_state = build_nn(test_cell, test_rnn_size, test_input_data, test_vocab_size, test_embed_dim)
 
@@ -318,10 +308,4 @@ def test_pick_word(pick_word):
         assert pred_word in test_int_to_vocab.values(),\
             'Predicted word not found in int_to_vocab.'
 
-
-<<<<<<< HEAD
     _print_success_message()
-=======
-    _print_success_message()
-
->>>>>>> d1541a8cab9e378b265cbb0de0c244150dbdedde
